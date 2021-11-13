@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="General">
+        <menu>
+            <item
+                android:id="@+id/add"
+                android:title="Add Note" />
+
+            <item
+                android:id="@+id/sync"
+                android:title="SYNC" />
+        </menu>
+    </item>
+    <item android:title="Features">
+        <menu>
+
+            <item
+                android:id="@+id/shareapp"
+                android:title="shareapp" />
+
+
+            <item
+                android:id="@+id/Supprt"
+                android:title="Contact Support" />
+        </menu>
+    </item>
+    <item android:title="Logout">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

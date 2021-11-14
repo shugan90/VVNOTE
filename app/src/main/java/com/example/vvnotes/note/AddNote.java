@@ -32,6 +32,7 @@ public class AddNote extends AppCompatActivity {
     ProgressBar progressBarSave;
     FirebaseUser user;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -74,7 +74,7 @@ public class Register extends AppCompatActivity {
                     rUserConfPass.setError("Password Do not Match.");
                 }
 
-                progressBar.setVisibility(View.VISIBLE);
+                //progressBar.setVisibility(View.VISIBLE);
 
                 AuthCredential credential = EmailAuthProvider.getCredential(uUserEmail,uUserPass);
                 fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {

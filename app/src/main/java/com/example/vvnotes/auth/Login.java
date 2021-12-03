@@ -113,20 +113,6 @@ public class Login extends AppCompatActivity {
                 spinner.setVisibility(View.VISIBLE);
 
 
-                fAuth.signInWithEmailAndPassword(mEmail,mPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(Login.this, "Success !", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), Mmain.class));
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Login.this, "Login Failed. " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        spinner.setVisibility(View.GONE);
-                    }
-                });
 
                 fAuth.signInWithEmailAndPassword(mEmail,mPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override

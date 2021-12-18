@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vvnotes.MainActivity;
+import com.example.vvnotes.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthCredential;
@@ -22,8 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-import com.example.vvnotes.MainActivity;
-import com.example.vvnotes.R;
+
 
 public class Register extends AppCompatActivity {
     EditText rUserName,rUserEmail,rUserPass,rUserConfPass;
@@ -80,8 +81,6 @@ public class Register extends AppCompatActivity {
                 fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(Register.this, "Notes are Synced.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
                         FirebaseUser usr = fAuth.getCurrentUser();
                         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()

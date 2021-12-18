@@ -1,5 +1,6 @@
 package com.example.vvnotes.note;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.vvnotes.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -73,8 +75,7 @@ public class AddNote extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(AddNote.this, "Note Added.", Toast.LENGTH_SHORT).show();
-
-                        finish();
+                        //finish();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

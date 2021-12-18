@@ -32,6 +32,7 @@ public class EditNote extends AppCompatActivity {
         spinner = findViewById(R.id.progressBar2);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
+
         data = getIntent();
 
 

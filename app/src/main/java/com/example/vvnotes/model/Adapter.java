@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements Filterable {
     List<String> titles;
     List<String> content;
@@ -44,21 +45,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-            holder.noteTitle.setText(titles.get(position));
-            holder.noteContent.setText(content.get(position));
-            final int code = getRandomColor();
-            holder.mCardView.setCardBackgroundColor(holder.view.getResources().getColor(code,null));
+        holder.noteTitle.setText(titles.get(position));
+        holder.noteContent.setText(content.get(position));
+        final int code = getRandomColor();
+        holder.mCardView.setCardBackgroundColor(holder.view.getResources().getColor(code,null));
 
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(), NoteDetails.class);
-                    i.putExtra("title",titles.get(position));
-                    i.putExtra("content",content.get(position));
-                    i.putExtra("code",code);
-                    v.getContext().startActivity(i);
-                }
-            });
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), NoteDetails.class);
+                i.putExtra("title",titles.get(position));
+                i.putExtra("content",content.get(position));
+                i.putExtra("code",code);
+                v.getContext().startActivity(i);
+            }
+        });
     }
 
     private int getRandomColor() {

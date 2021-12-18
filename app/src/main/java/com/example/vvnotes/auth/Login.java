@@ -1,6 +1,7 @@
 package com.example.vvnotes.auth;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.vvnotes.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -53,8 +56,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login to VVNotes");
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("VVNotes");
         // Set the dimensions of the sign-in button.
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
@@ -95,7 +98,7 @@ public class Login extends AppCompatActivity {
 
 // Initialize Firebase Auth
 
-       // showWarning();
+        // showWarning();
 
         loginNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +113,27 @@ public class Login extends AppCompatActivity {
 
                 // delete notes first
 
-                spinner.setVisibility(View.VISIBLE);
+                //spinner.setVisibility(View.VISIBLE);
+
+                if(fAuth.getCurrentUser().isAnonymous()){
+                    FirebaseUser user = fAuth.getCurrentUser();
+
+                    fStore.collection("notes").document(user.getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(Login.this, "All Temp Notes are Deleted.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    // delete Temp user
+
+                    user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(Login.this, "Temp user Deleted.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
 
 
@@ -129,6 +152,8 @@ public class Login extends AppCompatActivity {
                     }
                 });
 
+
+
             }
         });
 
@@ -142,7 +167,7 @@ public class Login extends AppCompatActivity {
 
     private void signIn() {
         mGoogleSignInClient.signOut();
-       Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
 
 
@@ -219,5 +244,26 @@ public class Login extends AppCompatActivity {
         }
         super.onStart();
     }
+
+    private void showWarning() {
+        final AlertDialog.Builder warning = new AlertDialog.Builder(this)
+                .setTitle("Are you sure ?")
+                .setMessage("Linking Existing Account Will delete all the temp notes. Create New Account To Save them.")
+                .setPositiveButton("Save Notes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getApplicationContext(),Register.class));
+                        finish();
+                    }
+                }).setNegativeButton("Its Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                });
+
+        warning.show();
+    }
+
 
 }

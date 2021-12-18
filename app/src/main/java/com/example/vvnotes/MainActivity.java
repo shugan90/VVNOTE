@@ -53,7 +53,6 @@ import com.example.vvnotes.note.NoteDetails;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         i.putExtra("noteId",docId);
                         v.getContext().startActivity(i);
                         titles = new ArrayList<>();
-
+                        titles.add("Test add");
                     }
                 });
 
@@ -307,6 +306,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.settings){
+            Toast.makeText(this, "Settings Menu is Clicked.", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 
@@ -332,8 +338,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         colorCode.add(R.color.yellow);
         colorCode.add(R.color.skyblue);
         colorCode.add(R.color.lightPurple);
+        colorCode.add(R.color.lightGreen);
         colorCode.add(R.color.gray);
-
+        colorCode.add(R.color.pink);
+        colorCode.add(R.color.red);
+        colorCode.add(R.color.greenlight);
+        colorCode.add(R.color.notgreen);
 
         Random randomColor = new Random();
         int number = randomColor.nextInt(colorCode.size());
